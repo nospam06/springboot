@@ -1,0 +1,15 @@
+group 'com.ohmyapp'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':presentation')
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'org.glassfish.jersey.core:jersey-server:2.22.1'
+    compile 'org.glassfish.jersey.core:jersey-common:2.22.1'
+}

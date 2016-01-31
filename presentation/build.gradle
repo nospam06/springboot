@@ -1,0 +1,13 @@
+group 'com.ohmyapp'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':boot')
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

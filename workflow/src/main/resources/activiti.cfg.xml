@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+				http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/tx
+  http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <!--
+        <tx:annotation-driven transaction-manager="transactionManager"/>
+        <bean id="jtaDataSource" class="org.apache.commons.dbcp.BasicDataSource" >
+          <property name="driverClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+          <property name="url" value="jdbc:mysql://localhost:3306/activiti" />
+          <property name="username" value="activiti" />
+          <property name="password" value="activiti" />
+          <property name="defaultAutoCommit" value="true" />
+        </bean>
+            -->
+        <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+            <property name="databaseSchemaUpdate" value="true"/>
+            <property name="dataSource" ref="dataSource" />
+            <property name="transactionManager" ref="transactionManager" />
+        </bean>
+    <!--
+
+            <bean id="jtaDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean"
+                  init-method="init" destroy-method="close">
+                <property name="uniqueResourceName" value="activiti" />
+                <property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+                <property name="xaProperties">
+                    <props>
+                        <prop key="URL">jdbc:mysql://localhost:3306/activiti</prop>
+                        <prop key="user">activiti</prop>
+                        <prop key="password">activiti</prop>
+                        <prop key="pinGlobalTxToPhysicalConnection">true</prop>
+                    </props>
+                </property>
+                <property name="maxPoolSize" value="50" />
+                <property name="minPoolSize" value="20" />
+            </bean>
+
+            <bean id="entityManagerFactory"
+                  class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+                <property name="jpaDialect">
+                    <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+                </property>
+                <property name="jpaVendorAdapter">
+                    <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                        <property name="persistenceUnitName" value="PU" />
+                        <property name="persistenceUnitManager" ref="persistenceUnitManager" />
+                        <property name="showSql" value="true" />
+                        <property name="generateDdl" value="true" />
+                        <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+                    </bean>
+                </property>
+                <property name="jpaProperties">
+                    <props>
+                        <prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate3.TransactionManagerLookup
+                        </prop>
+                    </props>
+                </property>
+            </bean>
+
+
+            <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+                <property name="databaseType" value="mysql" />
+                <property name="dataSource" ref="jtaDataSource" />
+                <property name="transactionManager" ref="transactionManager" />
+                <property name="databaseSchemaUpdate" value="false" />
+                <property name="jpaEntityManagerFactory" ref="entityManagerFactory" />
+                <property name="jpaCloseEntityManager" value="false" />
+                <property name="jobExecutorActivate" value="false" />
+            </bean>
+
+        <bean id="transactionManager"
+              class="org.springframework.transaction.jta.JtaTransactionManager">
+            <property name="transactionManager" ref="atomikosTransactionManager" />
+            <property name="userTransaction" ref="atomikosUserTransaction" />
+        </bean>
+
+        <bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
+              init-method="init" destroy-method="close">
+            <property name="forceShutdown" value="false" />
+        </bean>
+
+    <bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+        <property name="transactionTimeout" value="300" />
+    </bean>
+
+-->
+</beans>

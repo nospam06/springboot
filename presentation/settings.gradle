@@ -1,0 +1,10 @@
+rootProject.name = 'presentation'
+include 'boot'
+project(':boot').projectDir = new File('../boot')
+include 'workflow'
+project(':workflow').projectDir = new File('../workflow')
+include 'elasticsearch'
+project(':elasticsearch').projectDir = new File('../elasticsearch')
+include 'messagebus'
+project(':messagebus').projectDir = new File('../messagebus')
+
