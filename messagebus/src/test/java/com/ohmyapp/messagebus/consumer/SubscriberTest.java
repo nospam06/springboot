@@ -1,5 +1,6 @@
 package com.ohmyapp.messagebus.consumer;
 
+import com.ohmyapp.messagebus.MessageBusBaseTest;
 import com.ohmyapp.messagebus.api.MessageHandlerApi;
 import org.junit.Test;
 
@@ -9,7 +10,7 @@ import java.util.concurrent.Executors;
 /**
  * author by lip on 1/2/2016.
  */
-public class SubscriberTest {
+public class SubscriberTest extends MessageBusBaseTest {
 
     @Test
     public void testSubscribe() {

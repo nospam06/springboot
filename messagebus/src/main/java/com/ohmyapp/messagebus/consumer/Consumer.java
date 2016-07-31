@@ -32,7 +32,7 @@ public class Consumer implements ConsumerApi {
         Properties props = new Properties();
         props.put("zookeeper.connect", a_zookeeper);
         props.put("group.id", a_groupId);
-        props.put("zookeeper.session.timeout.ms", "10000");
+        props.put("zookeeper.session.timeout.ms", "30000");
         props.put("zookeeper.sync.time.ms", "2000");
         props.put("auto.commit.enable", "false");
         return new ConsumerConfig(props);

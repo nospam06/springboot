@@ -1,12 +1,13 @@
 package com.ohmyapp.messagebus.consumer;
 
+import com.ohmyapp.messagebus.MessageBusBaseTest;
 import com.ohmyapp.messagebus.api.MessageHandlerApi;
 import org.junit.Test;
 
 /**
  * author by lip on 1/2/2016.
  */
-public class ConsumerTest {
+public class ConsumerTest extends MessageBusBaseTest {
     @Test
     public void testConsumer() {
         Consumer consumer = new Consumer();

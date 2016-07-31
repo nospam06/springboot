@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1430575148/boot.iml" filepath="$PROJECT_DIR$/.idea/modules/1430575148/boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-262698813/elasticsearch.iml" filepath="$PROJECT_DIR$/.idea/modules/-262698813/elasticsearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1984952019/messagebus.iml" filepath="$PROJECT_DIR$/.idea/modules/1984952019/messagebus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/root.iml" filepath="$PROJECT_DIR$/.idea/modules/root.iml" />
+    </modules>
+  </component>
+</project>

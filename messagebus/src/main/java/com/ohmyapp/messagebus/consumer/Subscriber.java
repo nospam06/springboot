@@ -44,7 +44,7 @@ public class Subscriber implements SubscriberApi {
                 MessageAndMetadata<byte[], byte[]> next = it.next();
                 byte[] key = next.key();
                 byte[] message = next.message();
-                LOGGER.debug(new String(key, StandardCharsets.UTF_8)  + " = " + new String(message, StandardCharsets.UTF_8));
+                LOGGER.debug(new String(key, StandardCharsets.UTF_8) + " = " + new String(message, StandardCharsets.UTF_8));
 
                 messageHandler.handle(key, message);
                 _connector.commitOffsets(true);
