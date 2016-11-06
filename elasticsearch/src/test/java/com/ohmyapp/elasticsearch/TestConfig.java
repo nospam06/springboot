@@ -25,7 +25,7 @@ public class TestConfig {
         property.setProperty("elasticsearch.connection", "localhost:9300");
         property.setProperty("elasticsearch.clusterName", "es");
         property.setProperty("elasticsearch.type", "embedded");
-        property.setProperty("elasticsearch.dataPath", "build/temp");
+        property.setProperty("elasticsearch.homePath", "build/temp");
         placeholder.setProperties(property);
         return placeholder;
     }

@@ -3,10 +3,9 @@ package com.ohmyapp.elasticsearch.service;
 import com.ohmyapp.elasticsearch.entity.EntityMovie;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Emerald on 7/25/2016.
+ *
  */
 public class ElasticMovieServiceTest {
     @Test

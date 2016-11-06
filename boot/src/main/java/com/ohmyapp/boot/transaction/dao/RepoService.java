@@ -1,11 +1,11 @@
 package com.ohmyapp.boot.transaction.dao;
 
-import com.ohmyapp.boot.transaction.entity.EntityAddress;
+import com.ohmyapp.boot.transaction.entity.EntityService;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 
 /**
  * author by lip on 12/5/2015.
  */
-public interface DaoAddress extends PagingAndSortingRepository<EntityAddress, Long> {
+public interface RepoService extends PagingAndSortingRepository<EntityService, Long> {
 }

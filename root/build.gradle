@@ -1,0 +1,95 @@
+group 'com.ohmyapp'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    maven {
+        url 'http://localhost:8081/artifactory/libs-release'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+apply plugin: "com.github.jk1.dependency-license-report"
+
+apply plugin: "project-report"
+htmlDependencyReport {
+    projects = project.allprojects
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "http://localhost:8081/artifactory/plugins-release"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
+        //classpath "net.saliman:gradle-cobertura-plugin:2.3.2"
+        classpath "gradle.plugin.com.github.jk1:gradle-license-report:0.3.4"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'checkstyle'
+    checkstyle {
+        configFile = rootProject.file('google_checks.xml')
+        toolVersion = '6.19'
+        checkstyleTest.enabled = false
+    }
+
+    apply plugin: "org.sonarqube"
+    sonarqube {
+        properties {
+            //property 'sonar.tests', ''
+            //property 'sonar.cobertura.reportPath', 'build/reports/cobertura/coverage.xml'
+            property 'sonar.jacoco.itReportPath', 'build/reports/jacoco'
+            property 'sonar.junit.reportsPath', 'build/test-results'
+            property 'sonar.checkstyle.filters', '${rootProject}/google_checks.xml'
+        }
+    }
+
+    apply plugin: "jacoco"
+    jacoco {
+        toolVersion = "0.7.6.201602180812"
+        //reportsDir = file("$buildDir/customJacocoReportDir")
+    }
+/*
+    apply plugin: "net.saliman.cobertura"
+    cobertura {
+        coverageFormats = ['html', 'xml']
+        coverageIgnoreTrivial = true
+        coverageIgnores = ['org.slf4j.Logger.*']
+        coverageReportDir = new File("build/reports/cobertura")
+    }
+*/
+}
+    licenseReport {
+        // Set output directory for the report data.
+        // Defaults to ${project.buildDir}/reports/dependency-license.
+        //outputDir = "$projectDir/build/licenses"
+
+        // List the groups ids to exclude from dependency report.
+        // By default project's own group is excluded.
+        // For finer granularity, see: excludes.
+        excludeGroups = ['ch.qos.logback']
+
+        // List the ids (in module:name format) to exclude from dependency report.
+        // By default excludes is empty.
+        //excludes = ['moduleGroup:moduleName']
+
+        // Set custom report renderer, implementing ReportRenderer.
+        // Yes, you can write your own to support any format necessary.
+        //renderer = new XmlReportRenderer('third-party-libs.xml', 'Back-End Libraries')
+
+        // Set importers to import any external dependency information, i.e. from npm.
+        // Custom importer should implement DependencyDataImporter interface.
+        //importers = [new XmlReportImporter('Frontend dependencies', file(frontend_libs.xml))]
+
+        // Adjust the configurations to use, e.g. for Android projects.
+        //configurations = ['compile']
+    }

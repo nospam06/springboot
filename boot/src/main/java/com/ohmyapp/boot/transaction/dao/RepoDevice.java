@@ -9,5 +9,5 @@ import org.springframework.data.repository.CrudRepository;
  * author by lip on 12/5/2015.
  */
 @EnableJpaRepositories
-public interface DaoAppliance extends CrudRepository<EntityAppliance, Long> {
+public interface RepoDevice extends CrudRepository<EntityAppliance, Long> {
 }

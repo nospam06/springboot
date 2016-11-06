@@ -1,6 +1,6 @@
 package com.ohmyapp.boot.transaction.service;
 
-import com.ohmyapp.boot.transaction.dao.DaoAppliance;
+import com.ohmyapp.boot.transaction.dao.RepoDevice;
 import com.ohmyapp.boot.transaction.entity.EntityAppliance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ApplianceService {
     @Autowired
-    private DaoAppliance repository;
+    private RepoDevice repository;
 
     public EntityAppliance findById(Long id) {
         return repository.findOne(id);

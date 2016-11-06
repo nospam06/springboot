@@ -14,6 +14,7 @@ import static org.junit.Assert.fail;
 
 /**
  * Created by Emerald on 7/31/2016.
+ * test
  */
 public class MessageBusBaseTest {
     private static final Logger LOGGER = Logger.getLogger(MessageBusBaseTest.class);
