@@ -4,10 +4,10 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 
 repositories {
+    mavenCentral()
     maven {
         url 'http://localhost:8081/artifactory/libs-release'
     }
-    mavenCentral()
 }
 
 dependencies {

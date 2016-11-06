@@ -2,8 +2,9 @@ package com.ohmyapp.messagebus.producer;
 
 import com.ohmyapp.messagebus.MessageBusBaseTest;
 import com.ohmyapp.messagebus.api.PublisherApi;
-import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.fail;
 
@@ -11,7 +12,7 @@ import static org.junit.Assert.fail;
  * author by lip on 1/2/2016.
  */
 public class PublisherTest extends MessageBusBaseTest {
-    private static final Logger LOGGER = Logger.getLogger(PublisherTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PublisherTest.class);
 
     @Test
     public void testPublish() {

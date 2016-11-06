@@ -1,13 +1,11 @@
-package com.ohmyapp.elasticsearch.service;
+package com.ohmyapp.elasticsearch.dao.service;
 
-import com.ohmyapp.elasticsearch.entity.EntityMovie;
-import com.ohmyapp.elasticsearch.entity.Genre;
+import com.ohmyapp.elasticsearch.dao.entity.EntityMovie;
+import com.ohmyapp.elasticsearch.dao.entity.Genre;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +13,18 @@ import java.util.List;
 /**
  * author by lip on 12/8/2015.
  */
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan
-public class RunnerMovie // implements CommandLineRunner
-        {
+@Component
+public class RunnerMovie {
     @Autowired
     private ElasticMovieService movieService;
 
     private static final Logger logger = LoggerFactory.getLogger(RunnerMovie.class);
 
-    public void run(String... args) throws Exception {
+    /**
+     * run movie.
+     * @throws Exception ex
+     */
+    public void run() throws Exception {
         addSomeMovies();
         // We indexed star wars and pricess bride to our movie
         // listing in elastic search
@@ -41,8 +40,8 @@ public class RunnerMovie // implements CommandLineRunner
     }
 
     // add star wars and
-// princess bride as a movie
-// to elastic search
+    // princess bride as a movie
+    // to elastic search
     private void addSomeMovies() {
         EntityMovie starWars = getFirstMovie();
         movieService.addMovie(starWars);
@@ -55,7 +54,7 @@ public class RunnerMovie // implements CommandLineRunner
         secondMovie.setId("2");
         secondMovie.setRating(8.4d);
         secondMovie.setName("The Princess Bride");
-        List<Genre> princessPrideGenre = new ArrayList<Genre>();
+        List<Genre> princessPrideGenre = new ArrayList<>();
         princessPrideGenre.add(new Genre("ACTION"));
         princessPrideGenre.add(new Genre("ROMANCE"));
         secondMovie.setGenre(princessPrideGenre);
@@ -67,7 +66,7 @@ public class RunnerMovie // implements CommandLineRunner
         firstMovie.setId("1");
         firstMovie.setRating(9.6d);
         firstMovie.setName("Star Wars");
-        List<Genre> starWarsGenre = new ArrayList<Genre>();
+        List<Genre> starWarsGenre = new ArrayList<>();
         starWarsGenre.add(new Genre("ACTION"));
         starWarsGenre.add(new Genre("SCI_FI"));
         firstMovie.setGenre(starWarsGenre);

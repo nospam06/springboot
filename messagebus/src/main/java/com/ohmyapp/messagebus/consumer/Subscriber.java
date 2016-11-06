@@ -6,7 +6,8 @@ import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
 import kafka.message.MessageAndMetadata;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ import java.util.Map;
  * author by fedora on 11/24/15.
  */
 public class Subscriber implements SubscriberApi {
-    private static final Logger LOGGER = Logger.getLogger(Subscriber.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Subscriber.class);
     private ConsumerConnector _connector;
     private volatile boolean _run = true;
 

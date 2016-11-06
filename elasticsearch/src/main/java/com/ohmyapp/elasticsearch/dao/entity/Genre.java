@@ -1,4 +1,4 @@
-package com.ohmyapp.elasticsearch.entity;
+package com.ohmyapp.elasticsearch.dao.entity;
 
 /**
  * author by lip on 12/8/2015.
@@ -23,8 +23,6 @@ public class Genre {
 
     @Override
     public String toString() {
-        return "Genre{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Genre{ name='" + name + '\'' + '}';
     }
 }

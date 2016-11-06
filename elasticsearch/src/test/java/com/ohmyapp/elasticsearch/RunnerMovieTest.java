@@ -1,26 +1,24 @@
 package com.ohmyapp.elasticsearch;
 
-import com.ohmyapp.elasticsearch.service.RunnerMovie;
+import com.ohmyapp.elasticsearch.dao.service.RunnerMovie;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.*;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 /**
  * Created by Emerald on 7/25/2016.
- *
+ * test
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { TestConfig.class })
-@ComponentScan
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {TestConfig.class})
 public class RunnerMovieTest {
     @Autowired
-    RunnerMovie movie;
+    private RunnerMovie movie;
+
     @Test
     public void run() throws Exception {
         movie.run();

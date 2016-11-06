@@ -1,7 +1,7 @@
-package com.ohmyapp.elasticsearch.service;
+package com.ohmyapp.elasticsearch.dao.service;
 
-import com.ohmyapp.elasticsearch.dao.DaoMovie;
-import com.ohmyapp.elasticsearch.entity.EntityMovie;
+import com.ohmyapp.elasticsearch.dao.entity.EntityMovie;
+import com.ohmyapp.elasticsearch.dao.repo.RepoMovie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class ElasticMovieService {
     @Autowired
-    private DaoMovie repository;
+    private RepoMovie repository;
 
     public List<EntityMovie> getByName(String name) {
         return repository.findByName(name);

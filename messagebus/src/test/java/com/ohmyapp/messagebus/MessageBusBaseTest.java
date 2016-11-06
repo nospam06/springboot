@@ -3,9 +3,10 @@ package com.ohmyapp.messagebus;
 import kafka.server.KafkaConfig;
 import kafka.server.KafkaServerStartable;
 import org.apache.curator.test.TestingServer;
-import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -17,7 +18,7 @@ import static org.junit.Assert.fail;
  * test
  */
 public class MessageBusBaseTest {
-    private static final Logger LOGGER = Logger.getLogger(MessageBusBaseTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MessageBusBaseTest.class);
     protected static TestingServer zkServer;
     protected static KafkaServerStartable kafkaServer;
 

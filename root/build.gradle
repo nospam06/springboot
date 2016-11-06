@@ -5,12 +5,12 @@ apply plugin: 'java'
 
 repositories {
     maven {
+        url 'https://plugins.gralde.org/m2'
+    }
+    mavenCentral()
+    maven {
         url 'http://localhost:8081/artifactory/libs-release'
     }
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
 apply plugin: "com.github.jk1.dependency-license-report"
@@ -22,6 +22,9 @@ htmlDependencyReport {
 
 buildscript {
     repositories {
+        maven {
+            url 'https://plugins.gralde.org/m2'
+        }
         maven {
             url "http://localhost:8081/artifactory/plugins-release"
         }
@@ -67,29 +70,36 @@ subprojects {
         coverageReportDir = new File("build/reports/cobertura")
     }
 */
-}
-    licenseReport {
-        // Set output directory for the report data.
-        // Defaults to ${project.buildDir}/reports/dependency-license.
-        //outputDir = "$projectDir/build/licenses"
-
-        // List the groups ids to exclude from dependency report.
-        // By default project's own group is excluded.
-        // For finer granularity, see: excludes.
-        excludeGroups = ['ch.qos.logback']
-
-        // List the ids (in module:name format) to exclude from dependency report.
-        // By default excludes is empty.
-        //excludes = ['moduleGroup:moduleName']
-
-        // Set custom report renderer, implementing ReportRenderer.
-        // Yes, you can write your own to support any format necessary.
-        //renderer = new XmlReportRenderer('third-party-libs.xml', 'Back-End Libraries')
-
-        // Set importers to import any external dependency information, i.e. from npm.
-        // Custom importer should implement DependencyDataImporter interface.
-        //importers = [new XmlReportImporter('Frontend dependencies', file(frontend_libs.xml))]
-
-        // Adjust the configurations to use, e.g. for Android projects.
-        //configurations = ['compile']
+    configurations {
+        compile.exclude module: "log4j-over-slf4j"
+        compile.exclude module: "jcl-over-slf4j"
+        compile.exclude module: "jul-to-slf4j"
+        compile.exclude module: "slf4j-log4j12"
+        compile.exclude group: "org.apache.tomcat"
     }
+}
+licenseReport {
+    // Set output directory for the report data.
+    // Defaults to ${project.buildDir}/reports/dependency-license.
+    //outputDir = "$projectDir/build/licenses"
+
+    // List the groups ids to exclude from dependency report.
+    // By default project's own group is excluded.
+    // For finer granularity, see: excludes.
+    excludeGroups = ['ch.qos.logback']
+
+    // List the ids (in module:name format) to exclude from dependency report.
+    // By default excludes is empty.
+    //excludes = ['moduleGroup:moduleName']
+
+    // Set custom report renderer, implementing ReportRenderer.
+    // Yes, you can write your own to support any format necessary.
+    //renderer = new XmlReportRenderer('third-party-libs.xml', 'Back-End Libraries')
+
+    // Set importers to import any external dependency information, i.e. from npm.
+    // Custom importer should implement DependencyDataImporter interface.
+    //importers = [new XmlReportImporter('Frontend dependencies', file(frontend_libs.xml))]
+
+    // Adjust the configurations to use, e.g. for Android projects.
+    //configurations = ['compile']
+}

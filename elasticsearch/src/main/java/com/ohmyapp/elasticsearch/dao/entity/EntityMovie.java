@@ -1,4 +1,4 @@
-package com.ohmyapp.elasticsearch.entity;
+package com.ohmyapp.elasticsearch.dao.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -55,11 +55,7 @@ public class EntityMovie {
 
     @Override
     public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", genre=" + genre +
-                ", rating=" + rating +
-                '}';
+        return "Movie{ id=" + id + ", name='" + name + '\'' + ", genre=" + genre + ", rating="
+                + rating + '}';
     }
 }
