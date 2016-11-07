@@ -14,6 +14,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Emerald on 11/6/2016.
@@ -46,7 +47,9 @@ public class ElasticConfig {
             Settings settings = Settings.builder().put("path.home", path).build();
             return NodeBuilder.nodeBuilder().settings(settings).clusterName(clusterName).local(true).node().client();
         } else {
-            Settings settings = Settings.builder().put("cluster.name", clusterName).build();
+            Settings settings = Settings.builder().put("cluster.name", clusterName)
+                    .put("client.transport.sniff", false)
+                    .put("client.transport.ping_timeout", 20, TimeUnit.SECONDS).build();
             String[] connectInfo = connection.split(":");
             return TransportClient.builder().settings(settings).build()
                     .addTransportAddress(new InetSocketTransportAddress(
