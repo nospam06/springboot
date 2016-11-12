@@ -9,19 +9,25 @@ import java.util.concurrent.Callable;
  * author by lip on 1/2/2016.
  */
 public class SubscriberCallable implements Callable<Boolean> {
-    private SubscriberApi _subscriber;
-    private String _topic;
-    private MessageHandlerApi _messageHandler;
+    private SubscriberApi subscriber;
+    private String topic;
+    private MessageHandlerApi messageHandlerApi;
 
+    /**
+     * constructor
+     * @param subscriber        subscriber
+     * @param topic             topic
+     * @param messageHandler    messageHandler
+     */
     public SubscriberCallable(SubscriberApi subscriber, String topic, MessageHandlerApi messageHandler) {
-        _subscriber = subscriber;
-        _topic = topic;
-        _messageHandler = messageHandler;
+        this.subscriber = subscriber;
+        this.topic = topic;
+        messageHandlerApi = messageHandler;
     }
 
     @Override
     public Boolean call() throws Exception {
-        _subscriber.subscribe(_topic, _messageHandler);
+        subscriber.subscribe(topic, messageHandlerApi);
         return true;
     }
 

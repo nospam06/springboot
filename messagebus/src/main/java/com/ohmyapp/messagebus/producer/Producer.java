@@ -19,13 +19,9 @@ public class Producer {
 
     private static Map<String, Object> createProducerConfig() {
         Map<String, Object> map = new HashMap<>();
-//        map.put("metadata.broker.list", "192.168.1.97:9092");
         map.put("bootstrap.servers", "localhost:9092");
-//        map.put("serializer.class", "org.apache.kafka.common.serialization.StringSerializer");
         map.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         map.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        //map.put("partitioner.class", "example.producer.SimplePartitioner");
-//        map.put("request.required.acks", "1");
 
         return map;
     }

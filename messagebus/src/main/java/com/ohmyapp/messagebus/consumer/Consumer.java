@@ -16,22 +16,22 @@ import java.util.concurrent.Executors;
  * author by fedora on 11/24/15.
  */
 public class Consumer implements ConsumerApi {
-    private ExecutorService _executorService;
-    private Map<String, SubscriberApi> _subscriberMap = new HashMap<>();
+    private ExecutorService executorService;
+    private Map<String, SubscriberApi> subscriberMap = new HashMap<>();
 
     public static ConsumerConnector createConnector() {
         return createConnector("localhost:2181", "default");
     }
 
-    public static ConsumerConnector createConnector(String a_zookeeper, String a_groupId) {
+    public static ConsumerConnector createConnector(String zookeeper, String groupId) {
         return kafka.consumer.Consumer.createJavaConsumerConnector(
-                createConsumerConfig(a_zookeeper, a_groupId));
+                createConsumerConfig(zookeeper, groupId));
     }
 
-    private static ConsumerConfig createConsumerConfig(String a_zookeeper, String a_groupId) {
+    private static ConsumerConfig createConsumerConfig(String zookeeper, String groupId) {
         Properties props = new Properties();
-        props.put("zookeeper.connect", a_zookeeper);
-        props.put("group.id", a_groupId);
+        props.put("zookeeper.connect", zookeeper);
+        props.put("group.id", groupId);
         props.put("zookeeper.session.timeout.ms", "30000");
         props.put("zookeeper.sync.time.ms", "2000");
         props.put("auto.commit.enable", "false");
@@ -40,9 +40,9 @@ public class Consumer implements ConsumerApi {
 
     @Override
     public void start() {
-        if (_executorService == null) {
-            _executorService = Executors.newSingleThreadExecutor();
-            _subscriberMap.clear();
+        if (executorService == null) {
+            executorService = Executors.newSingleThreadExecutor();
+            subscriberMap.clear();
         }
     }
 
@@ -50,17 +50,17 @@ public class Consumer implements ConsumerApi {
     public void subscribe(String topic, MessageHandlerApi messageHandler) {
         Subscriber subscriber = new Subscriber(createConnector());
         SubscriberCallable callable = new SubscriberCallable(subscriber, topic, messageHandler);
-        _executorService.submit(callable);
-        _subscriberMap.put(topic, subscriber);
+        executorService.submit(callable);
+        subscriberMap.put(topic, subscriber);
     }
 
     @Override
     public void stop() {
-        for (Map.Entry<String, SubscriberApi> entry : _subscriberMap.entrySet()) {
+        for (Map.Entry<String, SubscriberApi> entry : subscriberMap.entrySet()) {
             SubscriberApi subscriber = entry.getValue();
             subscriber.stop();
         }
-        _subscriberMap.clear();
-        _executorService.shutdown();
+        subscriberMap.clear();
+        executorService.shutdown();
     }
 }

@@ -5,11 +5,10 @@ package com.ohmyapp.messagebus.api;
  */
 public interface PublisherApi<K, V> {
     /**
-     *
-     * @param topic         message topic
-     * @param key           key
-     * @param message       message
+     * @param topic   message topic
+     * @param key     key
+     * @param message message
      */
     void publish(String topic, K key, V message);
 
- }
+}

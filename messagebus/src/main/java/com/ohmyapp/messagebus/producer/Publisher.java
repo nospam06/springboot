@@ -15,19 +15,19 @@ import javax.annotation.PostConstruct;
  */
 public class Publisher<K, V> implements PublisherApi<K, V> {
     private static final Logger LOGGER = LoggerFactory.getLogger(Publisher.class);
-    private KafkaProducer<K, V> _producer;
+    private KafkaProducer<K, V> producer;
 
     @PostConstruct
     public void initProducer(K key, V value) {
-        _producer = Producer.createProducer(key, value);
+        producer = Producer.createProducer(key, value);
     }
 
     @Override
     public void publish(final String topic, final K key, final V message) {
-        if (_producer == null) {
+        if (producer == null) {
             initProducer(key, message);
         }
-        _producer.send(new ProducerRecord<>(topic, key, message), new Callback() {
+        producer.send(new ProducerRecord<>(topic, key, message), new Callback() {
             @Override
             public void onCompletion(RecordMetadata metadata, Exception exception) {
                 if (exception == null) {

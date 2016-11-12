@@ -5,11 +5,12 @@ package com.ohmyapp.messagebus.api;
  */
 public interface SubscriberApi {
     /**
-     *                  subscribe to message topic
+     * subscribe to message topic
      *
-     * @param topic     message topic
+     * @param topic message topic
      */
     void subscribe(String topic, MessageHandlerApi handler);
+
     /**
      * stop subscriber
      */

@@ -8,13 +8,15 @@ public interface ConsumerApi {
      * start consumer
      */
     void start();
+
     /**
-     *                  subscribe to message topic
+     * subscribe to message topic
      *
-     * @param topic     message topic
-     * @param messageHandler     message handler
+     * @param topic          message topic
+     * @param messageHandler message handler
      */
-    void subscribe(String topic,  MessageHandlerApi messageHandler);
+    void subscribe(String topic, MessageHandlerApi messageHandler);
+
     /**
      * stop consumer
      */

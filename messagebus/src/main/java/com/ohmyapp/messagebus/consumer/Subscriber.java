@@ -19,11 +19,11 @@ import java.util.Map;
  */
 public class Subscriber implements SubscriberApi {
     private static final Logger LOGGER = LoggerFactory.getLogger(Subscriber.class);
-    private ConsumerConnector _connector;
-    private volatile boolean _run = true;
+    private ConsumerConnector connector;
+    private volatile boolean run = true;
 
     public Subscriber(ConsumerConnector connector) {
-        _connector = connector;
+        this.connector = connector;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Subscriber implements SubscriberApi {
 
         Map<String, Integer> topicCountMap = new HashMap<>();
         topicCountMap.put(topic, 1);
-        Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = _connector
+        Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = connector
                 .createMessageStreams(topicCountMap);
         List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
 
@@ -41,22 +41,23 @@ public class Subscriber implements SubscriberApi {
         //
         for (final KafkaStream stream : streams) {
             ConsumerIterator it = stream.iterator();
-            while (_run && it.hasNext()) {
+            while (run && it.hasNext()) {
                 MessageAndMetadata<byte[], byte[]> next = it.next();
                 byte[] key = next.key();
                 byte[] message = next.message();
-                LOGGER.debug(new String(key, StandardCharsets.UTF_8) + " = " + new String(message, StandardCharsets.UTF_8));
+                LOGGER.debug("{} = {}", new String(key, StandardCharsets.UTF_8),
+                        new String(message, StandardCharsets.UTF_8));
 
                 messageHandler.handle(key, message);
-                _connector.commitOffsets(true);
+                connector.commitOffsets(true);
             }
         }
-        _connector.shutdown();
+        connector.shutdown();
         messageHandler.stop();
     }
 
     @Override
     public void stop() {
-        _run = false;
+        run = false;
     }
 }

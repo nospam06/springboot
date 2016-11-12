@@ -8,13 +8,15 @@ public interface MessageHandlerApi {
      * start message handler
      */
     void start();
+
     /**
-     *                  deliver message to destination
+     * deliver message to destination
      *
-     * @param key           key
-     * @param message     message
+     * @param key     key
+     * @param message message
      */
     void handle(byte[] key, byte[] message);
+
     /**
      * stop message handler
      */
