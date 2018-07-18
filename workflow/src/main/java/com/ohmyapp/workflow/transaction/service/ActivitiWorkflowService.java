@@ -7,7 +7,8 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.runtime.ProcessInstance;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,7 @@ public class ActivitiWorkflowService implements WorkflowApi {
 
     private ProcessEngine _engine;
 
-    private static final Logger LOGGER = Logger.getLogger(ActivitiWorkflowService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ActivitiWorkflowService.class);
 
     public ActivitiWorkflowService() {
         // default constructor

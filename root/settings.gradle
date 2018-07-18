@@ -1,7 +1,0 @@
-rootProject.name = 'root'
-include 'boot'
-project(':boot').projectDir = new File('../boot')
-include 'elasticsearch'
-project(':elasticsearch').projectDir = new File('../elasticsearch')
-include 'messagebus'
-project(':messagebus').projectDir = new File('../messagebus')

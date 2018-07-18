@@ -1,0 +1,13 @@
+rootProject.name = 'root'
+include 'boot'
+project(':boot').projectDir = new File('boot')
+include 'elasticsearch'
+project(':elasticsearch').projectDir = new File('elasticsearch')
+include 'messagebus'
+project(':messagebus').projectDir = new File('messagebus')
+include 'rest'
+project(':rest').projectDir = new File('rest')
+include 'presentation'
+project(':presentation').projectDir = new File('presentation')
+include 'workflow'
+project(':workflow').projectDir = new File('workflow')

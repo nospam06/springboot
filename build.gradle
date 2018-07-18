@@ -8,12 +8,12 @@ repositories {
         url 'https://plugins.gralde.org/m2'
     }
     mavenCentral()
-    maven {
-        url 'http://localhost:8081/artifactory/libs-release'
-    }
+   // maven {
+   //     url 'http://localhost:8081/artifactory/libs-release'
+   // }
 }
 
-apply plugin: "com.github.jk1.dependency-license-report"
+//apply plugin: "com.github.jk1.dependency-license-report"
 
 apply plugin: "project-report"
 htmlDependencyReport {
@@ -25,14 +25,14 @@ buildscript {
         maven {
             url 'https://plugins.gralde.org/m2'
         }
-        maven {
-            url "http://localhost:8081/artifactory/plugins-release"
-        }
+       // maven {
+       //     url "http://localhost:8081/artifactory/plugins-release"
+       // }
     }
     dependencies {
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
+        //classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
         //classpath "net.saliman:gradle-cobertura-plugin:2.3.2"
-        classpath "gradle.plugin.com.github.jk1:gradle-license-report:0.3.4"
+        //classpath "gradle.plugin.com.github.jk1:gradle-license-report:0.3.4"
     }
 }
 
@@ -44,7 +44,7 @@ subprojects {
         toolVersion = '6.19'
         checkstyleTest.enabled = false
     }
-
+/*
     apply plugin: "org.sonarqube"
     sonarqube {
         properties {
@@ -55,7 +55,7 @@ subprojects {
             property 'sonar.checkstyle.filters', '${rootProject}/google_checks.xml'
         }
     }
-
+*/
     apply plugin: "jacoco"
     jacoco {
         toolVersion = "0.7.6.201602180812"
@@ -78,7 +78,7 @@ subprojects {
         compile.exclude group: "org.apache.tomcat"
     }
 }
-licenseReport {
+//licenseReport {
     // Set output directory for the report data.
     // Defaults to ${project.buildDir}/reports/dependency-license.
     //outputDir = "$projectDir/build/licenses"
@@ -86,7 +86,7 @@ licenseReport {
     // List the groups ids to exclude from dependency report.
     // By default project's own group is excluded.
     // For finer granularity, see: excludes.
-    excludeGroups = ['ch.qos.logback']
+    //excludeGroups = ['ch.qos.logback']
 
     // List the ids (in module:name format) to exclude from dependency report.
     // By default excludes is empty.
@@ -102,4 +102,4 @@ licenseReport {
 
     // Adjust the configurations to use, e.g. for Android projects.
     //configurations = ['compile']
-}
+//}

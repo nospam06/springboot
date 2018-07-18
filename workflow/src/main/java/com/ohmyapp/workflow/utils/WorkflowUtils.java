@@ -1,6 +1,7 @@
 package com.ohmyapp.workflow.utils;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +13,7 @@ import java.nio.charset.StandardCharsets;
  * author by lip on 12/30/2015.
  */
 public class WorkflowUtils {
-    private static final Logger LOGGER = Logger.getLogger(WorkflowUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WorkflowUtils.class);
     private WorkflowUtils() {
         // static access only
     }
